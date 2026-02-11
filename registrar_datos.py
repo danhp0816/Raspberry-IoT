@@ -35,4 +35,4 @@ try:
 
 except Exception as e:
     # Si ocurre cualquier error (archivo no encontrado, tabla inexistente, etc.), lo captura y lo muestra
-    print(f"Error detectado durante la operación: {e}")
+    print(f"Error detectado durante la operación: {e}") #PRUEBA 1
