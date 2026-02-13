@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>HMI - Monitoreo Térmico</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #1a1a1a; color: white; text-align: center; }
+        .container { margin-top: 50px; }
+        .card { background: #2d2d2d; padding: 20px; border-radius: 10px; display: inline-block; border: 1px solid #444; }
+        h1 { color: #00ff00; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>SISTEMA DE MONITOREO RASPBERRY PI 5</h1>
+            <p>Estado del Sistema: <strong>EN LÍNEA</strong></p>
+            <hr>
+            <p>Aquí aparecerá tu gráfica dinámica mañana.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+<div class="card">
+    <h1>CONTROL HMI - HISTÓRICOS</h1>
+    <form method="POST">
+        <label>Día: </label>
+        <input type="date" name="dia" required>
+        <br><br>
+        <label>Inicio: </label>
+        <input type="time" name="inicio" step="1" value="00:00:00">
+        <label>Fin: </label>
+        <input type="time" name="fin" step="1" value="23:59:59">
+        <br><br>
+        <button type="submit" style="padding: 10px 20px; cursor: pointer;">GENERAR GRÁFICA</button>
+    </form>
+
+    <hr>
+
+    {% if imagen %}
+        <h3>Reporte Visual:</h3>
+        <img src="{{ url_for('static', filename='temp_reporte.png') }}" alt="Gráfica" style="max-width: 100%; border: 2px solid #00ff00;">
+    {% else %}
+        <p>Selecciona un rango para visualizar los datos.</p>
+    {% endif %}
+</div>
+
+{% if imagen %} 
+    <div style="margin-top: 20px;">
+        <a href="{{ url_for('descargar', fecha=request.form.get('dia')) }}">
+            <button style="background-color: #007bff; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                📄 DESCARGAR REPORTE (Día: {{ request.form.get('dia') }})
+            </button>
+        </a>
+    </div>
+{% endif %}

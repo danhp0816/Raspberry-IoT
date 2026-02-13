@@ -6,7 +6,7 @@ def obtener_temp():
     res = os.popen("vcgencmd measure_temp").readline()
     
     # Limpia la cadena (quita "temp=" y "'C\n") y convierte el texto restante a número decimal (float)
-    return float(res.replace("temp=","").replace("'C\n",""))
+    return float(res.replace("temp=",'').replace("'C\n",""))
 
 try:
     # Intenta establecer una conexión con el archivo físico de la base de datos
