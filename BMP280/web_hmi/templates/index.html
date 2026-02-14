@@ -1,0 +1,28 @@
+<form method="POST">
+    <input type="date" name="dia" required value="{{ dia }}">
+    <input type="time" name="inicio" step="1" value="{{ inicio }}">
+    <input type="time" name="fin" step="1" value="{{ fin }}">
+    <button type="submit">FILTRAR</button>
+</form>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+
+    <div style="flex: 1; min-width: 400px; max-width: 600px; border: 1px solid #ddd; border-radius: 10px; padding: 15px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h3 style="text-align: center; color: #333;">🌍 Monitoreo Ambiental</h3>
+        {% if hay_amb %}
+            <img src="{{ url_for('static', filename='temp_ambiente.png') }}?{{ range(1,9999) | random }}" style="width: 100%; border-radius: 5px;">
+        {% else %}
+            <p style="text-align: center; color: #666;">Sin datos ambientales registrados.</p>
+        {% endif %}
+    </div>
+
+    <div style="flex: 1; min-width: 400px; max-width: 600px; border: 1px solid #ddd; border-radius: 10px; padding: 15px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h3 style="text-align: center; color: #333;">🔥 Salud del CPU</h3>
+        {% if hay_cpu %}
+            <img src="{{ url_for('static', filename='reporte_cpu.png') }}?{{ range(1,9999) | random }}" style="width: 100%; border-radius: 5px;">
+        {% else %}
+            <p style="text-align: center; color: #666;">Sin datos de CPU registrados.</p>
+        {% endif %}
+    </div>
+
+</div>

@@ -19,7 +19,7 @@ try:
     temp_actual = obtener_temp()
     
     # Prepara la instrucción SQL. Los '?' son marcadores de posición por seguridad (evitan inyecciones SQL)
-    sql = "INSERT INTO lecturas (sensor_nombre, temperatura, unidad) VALUES (?, ?, ?)"
+    sql = "INSERT INTO lecturas (fecha, sensor_nombre, temperatura, unidad) VALUES (datetime('now','localtime'),?, ?, ?)"
     
     # Ejecuta la instrucción pasando los datos reales: nombre, valor y unidad
     cursor.execute(sql, ('CPU_INTERNAL', temp_actual, 'C'))
